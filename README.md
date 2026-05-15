@@ -1,4 +1,4 @@
-# Praktikum 1 - 6 PHP
+# Praktikum 1 - 7 PHP
 **Nama:** Mahfuz Fauzi  
 **Kelas:** I241C  
 **NIM:** 312410412  
@@ -317,3 +317,40 @@ Ini adalah lanjutan tugas Praktikum Pemrograman Web 2
 <img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/21.png">
 
 ---
+
+# Laporan Praktikum 7: Upload File Gambar
+
+## Tujuan Praktikum
+1. Memahami konsep dasar File Upload pada aplikasi web.
+2. Mampu membuat fitur unggah file gambar menggunakan Framework CodeIgniter 4.
+
+---
+
+## 🧩 Langkah-Langkah Praktikum
+
+### 1. Memodifikasi Controller Artikel untuk Menangani File
+- Membuka file `app/Controllers/Artikel.php`.
+- Memperbarui method `add()` untuk menangkap file gambar yang dikirim dari form menggunakan `$this->request->getFile('gambar')`.
+- Menambahkan logika untuk mengecek validitas gambar dan memindahkannya ke direktori `public/gambar` menggunakan fungsi `move()`.
+- Menyimpan nama file gambar yang di-generate secara acak (`getRandomName()`) ke dalam database tabel artikel.
+
+*[Tambahkan Screenshot Source Code Artikel.php method add di sini]*
+
+### 2. Memodifikasi View Form Tambah Artikel
+- Membuka file `app/Views/artikel/form_add.php`.
+- Menambahkan elemen `<input type="file" name="gambar">` agar pengguna dapat memilih gambar dari perangkat.
+- Menambahkan atribut `enctype="multipart/form-data"` pada tag `<form>` agar form diizinkan untuk mengirim data berupa file fisik, bukan hanya sekadar teks.
+
+*[Tambahkan Screenshot Source Code View form_add.php di sini]*
+
+### 3. Uji Coba (Testing) Upload Gambar
+- Mengakses halaman Tambah Artikel di browser.
+- Mengisi data artikel baru dan memilih file gambar dari komputer.
+- Menyimpan data dan memastikan gambar berhasil diunggah ke folder *public/gambar* serta ditampilkan dengan baik pada halaman daftar artikel dan detail artikel.
+
+*[Tambahkan Screenshot Halaman Form Tambah Artikel saat memilih gambar di sini]*
+*[Tambahkan Screenshot Halaman Web yang menampilkan gambar artikel yang berhasil diunggah di sini]*
+
+---
+**Repository by:** Mahfuz Fauzi
+**Mata Kuliah:** Pemrograman Web 2
