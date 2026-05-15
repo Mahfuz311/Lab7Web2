@@ -80,7 +80,6 @@ class Artikel extends BaseController
         
         $isDataValid = $validation->withRequest($this->request)->run();
 
-        // KITA UBAH KONDISI IF-NYA DI SINI AGAR LEBIH AMAN
         if ($isDataValid) { 
             $artikel = new \App\Models\ArtikelModel();
             
