@@ -1,4 +1,4 @@
-# Praktikum 1 - 5 PHP
+# Praktikum 1 - 6 PHP
 **Nama:** Mahfuz Fauzi  
 **Kelas:** I241C  
 **NIM:** 312410412  
