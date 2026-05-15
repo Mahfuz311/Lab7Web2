@@ -1,4 +1,4 @@
-# Praktikum 1 - 4 PHP
+# Praktikum 1 - 5 PHP
 **Nama:** Mahfuz Fauzi  
 **Kelas:** I241C  
 **NIM:** 312410412  
@@ -233,5 +233,87 @@ Kontak:
 Admin:
 
 <img src="https://github.com/Mahfuz311/Lab7Web2/blob/827658c625c797deb3f2a9b1d3b705deb661e049/ss/18.png" width="800">
+
+---
+
+# Laporan Praktikum 5: Pagination dan Pencarian
+
+Ini adalah lanjutan tugas Praktikum Pemrograman Web 2
+
+## Tujuan Praktikum
+1. Memahami konsep dasar *Pagination* (Paging) untuk membatasi tampilan data.
+2. Memahami konsep dasar Pencarian (*Search*) untuk memfilter data.
+3. Mampu membuat fitur *Paging* dan Pencarian menggunakan Framework CodeIgniter 4.
+
+---
+
+## 🧩 Langkah-Langkah Praktikum
+
+### 1. Modifikasi Controller Artikel (Pagination & Pencarian)
+- Membuka file `app/Controllers/Artikel.php`.
+- Memodifikasi method `admin_index()` untuk menangkap parameter pencarian (request GET `q`).
+- Mengganti fungsi `findAll()` menjadi gabungan fungsi `like('judul', $q)` untuk mencari data berdasarkan judul, dan fungsi `paginate()` untuk membatasi jumlah baris data yang ditampilkan per halaman.
+- Mengirimkan data `pager` dari model ke *view* untuk menampilkan tombol halaman.
+
+### 2. Menambahkan Form Pencarian di View
+- Membuka file `app/Views/artikel/admin_index.php`.
+- Menambahkan form pencarian menggunakan metode `GET` tepat di atas tabel data artikel. Form ini memiliki inputan teks untuk memasukkan kata kunci pencarian.
+
+### 3. Menambahkan Link Pagination dan Menyesuaikan Nomor Urut
+- Di file `app/Views/artikel/admin_index.php`, menyisipkan perintah `<?= $pager->only(['q'])->links(); ?>` di bawah tabel untuk memunculkan tombol navigasi halaman. Parameter `only(['q'])` digunakan agar kata kunci pencarian tetap tersimpan saat berpindah halaman.
+- Memodifikasi kolom penomoran ID tabel agar menggunakan nomor urut tampilan (1, 2, 3...) yang dinamis sesuai halamannya menggunakan perhitungan variabel `$no`.
+
+### 4. Uji Coba (Testing)
+- Mengakses halaman Admin Portal Berita dan menambahkan beberapa data artikel *dummy* (via fitur *Seeder* maupun manual).
+- Melakukan uji coba memasukkan kata kunci pada kotak pencarian untuk melihat apakah tabel berhasil difilter.
+- Menguji coba perpindahan halaman dengan menekan tombol navigasi di bawah tabel.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/21.png">
+
+---
+
+# Laporan Praktikum 6: Relasi Tabel dan Query Builder
+
+## Tujuan Praktikum
+1. Memahami konsep relasi antar tabel (One-to-Many) dalam database.
+2. Mengimplementasikan relasi menggunakan tabel `kategori` dan `artikel`.
+3. Melakukan query join antar tabel menggunakan fitur Query Builder di CodeIgniter 4.
+4. Menampilkan data dari tabel yang saling berelasi pada antarmuka pengguna (View).
+
+---
+
+## 🧩 Langkah-Langkah Praktikum
+
+### 1. Persiapan Database & Relasi Tabel
+- Membuat tabel baru bernama `kategori` untuk menyimpan daftar nama kategori.
+- Memodifikasi tabel `artikel` dengan menambahkan kolom `id_kategori` sebagai *Foreign Key* yang berelasi dengan tabel `kategori`.
+- Menyisipkan beberapa data kategori awal (Informasi, Teknologi, Pendidikan, Gaya Hidup) melalui phpMyAdmin.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/Praktikum6.1.png">
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/praktikum6.2.png">
+
+### 2. Konfigurasi Model (Kategori & Artikel)
+- Membuat file `KategoriModel.php` untuk memetakan tabel kategori.
+- Memperbarui `ArtikelModel.php` dengan menambahkan `id_kategori` ke dalam `$allowedFields`.
+- Membuat method `getArtikelDenganKategori()` di dalam `ArtikelModel` yang menggunakan fitur **Query Builder** untuk melakukan operasi `JOIN` antara tabel artikel dan kategori.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/praktikum6.3.png">
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/praktikum6.4.png">
+
+### 3. Pembaruan Controller Artikel
+- Mengimpor `KategoriModel` ke dalam Controller `Artikel.php`.
+- Memodifikasi method `admin_index()` untuk menangani parameter pencarian (`q`) dan filter kategori (`kategori_id`), sekaligus mengimplementasikan *pagination*.
+- Mengubah metode `add()` dan `edit()` agar dapat menangkap inputan `id_kategori` dari form pengguna dan menyimpannya ke dalam database.
+
+### 4. Modifikasi View (Antarmuka Pengguna)
+- **Halaman Admin (`admin_index.php`):** Menambahkan elemen dropdown filter kategori di samping kolom pencarian dan memunculkan kolom kategori pada tabel data.
+- **Form Tambah/Edit (`form_add.php` & `form_edit.php`):** Mengganti input teks biasa menjadi tag `<select>` yang melooping data kategori dari database secara dinamis.
+- **Halaman Publik:** Memperbarui `index.php` (daftar artikel) dan `detail.php` (detail artikel tunggal) untuk menampilkan nama kategori milik masing-masing artikel sebagai bentuk penyelesaian tugas wajib modul.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/praktikum6.6.png">
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/dbc52e9216a65ddfe8643345b62cf518d1cfc85e/ss/21.png">
 
 ---
