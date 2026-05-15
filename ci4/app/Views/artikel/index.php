@@ -1,11 +1,12 @@
-<?= $this->extend('layout/main'); ?>
+<?= $this->include('template/header'); ?>
 
-<?= $this->section('content'); ?>
-
-<?php if($artikel): foreach($artikel as $row): ?>
+<?php if ($artikel): foreach ($artikel as $row): ?>
 <article class="entry">
-    <h2><a href="<?= base_url('/artikel/'.$row['slug']);?>"><?= $row['judul']; ?></a></h2>
-    <img src="<?= base_url('/gambar/'.$row['gambar']);?>" alt="<?= $row['judul']; ?>">
+    <h2><a href="<?= base_url('/artikel/' . $row['slug']); ?>"><?= $row['judul']; ?></a></h2>
+    
+    <p><strong>Kategori: </strong> <?= $row['nama_kategori'] ?></p>
+    
+    <img src="<?= base_url('/gambar/' . $row['gambar']); ?>" alt="<?= $row['judul']; ?>">
     <p><?= substr($row['isi'], 0, 200); ?></p>
 </article>
 <hr class="divider" />
@@ -15,4 +16,4 @@
 </article>
 <?php endif; ?>
 
-<?= $this->endSection(); ?>
+<?= $this->include('template/footer'); ?>

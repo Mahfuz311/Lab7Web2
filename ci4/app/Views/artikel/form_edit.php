@@ -1,31 +1,26 @@
 <?= $this->include('template/admin_header'); ?>
-
 <h2><?= $title; ?></h2>
-
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="post">
     <p>
-        <label for="judul">Judul:</label><br>
-        <input type="text" name="judul" id="judul" value="<?= $data['judul'];?>" style="width: 100%;">
+        <label for="judul">Judul</label>
+        <input type="text" name="judul" value="<?= $artikel['judul']; ?>" id="judul" required>
+    </p>
+    <p>
+        <label for="isi">Isi</label>
+        <textarea name="isi" id="isi" cols="50" rows="10"><?= $artikel['isi']; ?></textarea>
     </p>
     
     <p>
-        <label for="isi">Isi Artikel:</label><br>
-        <textarea name="isi" id="isi" cols="50" rows="10" style="width: 100%;"><?= $data['isi']; ?></textarea>
+        <label for="id_kategori">Kategori</label>
+        <select name="id_kategori" id="id_kategori" required>
+            <?php foreach($kategori as $k): ?>
+                <option value="<?= $k['id_kategori']; ?>" <?= ($artikel['id_kategori'] == $k['id_kategori']) ? 'selected' : ''; ?>>
+                    <?= $k['nama_kategori']; ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
     </p>
-
-    <p>
-        <label for="kategori">Kategori:</label><br>
-        <input type="text" name="kategori" id="kategori" value="<?= isset($data['kategori']) ? $data['kategori'] : '' ?>" style="width: 100%;">
-    </p>
-
-    <p>
-        <label for="gambar">Ganti Foto (Biarkan kosong jika tidak mengubah foto):</label><br>
-        <input type="file" name="gambar" id="gambar">
-    </p>
-
-    <p>
-        <input type="submit" value="Kirim" class="btn btn-large btn-primary">
-    </p>
+    
+    <p><input type="submit" value="Simpan Perubahan" class="btn btn-large"></p>
 </form>
-
 <?= $this->include('template/admin_footer'); ?>
