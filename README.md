@@ -334,23 +334,22 @@ Ini adalah lanjutan tugas Praktikum Pemrograman Web 2
 - Menambahkan logika untuk mengecek validitas gambar dan memindahkannya ke direktori `public/gambar` menggunakan fungsi `move()`.
 - Menyimpan nama file gambar yang di-generate secara acak (`getRandomName()`) ke dalam database tabel artikel.
 
-*[Tambahkan Screenshot Source Code Artikel.php method add di sini]*
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/8a077e9b0acba48f015da18fc9ba8d07b30b0eaf/ss/Praktikum7.3.png">
 
 ### 2. Memodifikasi View Form Tambah Artikel
 - Membuka file `app/Views/artikel/form_add.php`.
 - Menambahkan elemen `<input type="file" name="gambar">` agar pengguna dapat memilih gambar dari perangkat.
 - Menambahkan atribut `enctype="multipart/form-data"` pada tag `<form>` agar form diizinkan untuk mengirim data berupa file fisik, bukan hanya sekadar teks.
 
-*[Tambahkan Screenshot Source Code View form_add.php di sini]*
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/8a077e9b0acba48f015da18fc9ba8d07b30b0eaf/ss/praktikum7.4.png">
 
 ### 3. Uji Coba (Testing) Upload Gambar
 - Mengakses halaman Tambah Artikel di browser.
 - Mengisi data artikel baru dan memilih file gambar dari komputer.
 - Menyimpan data dan memastikan gambar berhasil diunggah ke folder *public/gambar* serta ditampilkan dengan baik pada halaman daftar artikel dan detail artikel.
 
-*[Tambahkan Screenshot Halaman Form Tambah Artikel saat memilih gambar di sini]*
-*[Tambahkan Screenshot Halaman Web yang menampilkan gambar artikel yang berhasil diunggah di sini]*
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/8a077e9b0acba48f015da18fc9ba8d07b30b0eaf/ss/praktikum7.1.png">
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/8a077e9b0acba48f015da18fc9ba8d07b30b0eaf/ss/praktikum7.2.png">
 
 ---
-**Repository by:** Mahfuz Fauzi
-**Mata Kuliah:** Pemrograman Web 2
