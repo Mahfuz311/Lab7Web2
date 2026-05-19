@@ -25,3 +25,11 @@ $routes->group('admin', ['filter' => 'auth'], function ($routes) {
     $routes->add('artikel/edit/(:any)', 'Artikel::edit/$1');
     $routes->get('artikel/delete/(:any)', 'Artikel::delete/$1');
 });
+
+// --- Route untuk Praktikum AJAX ---
+$routes->get('ajaxcontroller', 'AjaxController::index');
+$routes->get('ajaxcontroller/getdata', 'AjaxController::getData');
+$routes->post('ajaxcontroller/delete/(:any)', 'AjaxController::delete/$1');
+$routes->post('ajaxcontroller/add', 'AjaxController::add');
+$routes->get('ajaxcontroller/edit/(:num)', 'AjaxController::edit/$1');
+$routes->post('ajaxcontroller/update', 'AjaxController::update');
