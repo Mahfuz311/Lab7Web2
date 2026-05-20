@@ -35,39 +35,44 @@ class Artikel extends BaseController
 
     public function admin_index()
     {
-        $title = 'Daftar Artikel (Admin)'; 
+        $title = 'Daftar Artikel (Admin)';
         $model = new ArtikelModel();
-        
+
         $q = $this->request->getVar('q') ?? '';
-        $kategori_id = $this->request->getVar('kategori_id') ?? ''; 
-        
+        $kategori_id = $this->request->getVar('kategori_id') ?? '';
+        $page = $this->request->getVar('page') ?? 1;
+
+        $builder = $model->table('artikel')
+            ->select('artikel.*, kategori.nama_kategori')
+            ->join('kategori', 'kategori.id_kategori = artikel.id_kategori');
+
+        if ($q != '') {
+            $builder->like('artikel.judul', $q);
+        }
+        if ($kategori_id != '') {
+            $builder->where('artikel.id_kategori', $kategori_id);
+        }
+
+        // Menerapkan pagination dengan limit 10 data per halaman
+        $artikel = $builder->paginate(10, 'default', $page);
+        $pager = $model->pager;
+
         $data = [
             'title'       => $title,
             'q'           => $q,
-            'kategori_id' => $kategori_id, 
+            'kategori_id' => $kategori_id,
+            'artikel'     => $artikel,
+            'pager'       => $pager
         ];
-        
-        $builder = $model->table('artikel')
-            ->select('artikel.*, kategori.nama_kategori') 
-            ->join('kategori', 'kategori.id_kategori = artikel.id_kategori'); 
-            
-        if ($q != '') {
-            $builder->like('artikel.judul', $q); 
+
+        if ($this->request->isAJAX()) {
+            sleep(1);
+            return $this->response->setJSON($data);
+        } else {
+            $kategoriModel = new \App\Models\KategoriModel();
+            $data['kategori'] = $kategoriModel->findAll();
+            return view('artikel/admin_index', $data);
         }
-        
-        if ($kategori_id != '') {
-            $builder->where('artikel.id_kategori', $kategori_id); 
-        }
-        
-        $data['artikel'] = $builder->paginate(4); 
-        $data['pager']   = $model->pager; 
-        
-        // --- PERBAIKAN ERROR DI SINI ---
-        // Menembak alamat folder Models secara langsung
-        $kategoriModel = new \App\Models\KategoriModel(); 
-        $data['kategori'] = $kategoriModel->findAll(); 
-        
-        return view('artikel/admin_index', $data); 
     }
 
     public function add()
