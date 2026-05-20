@@ -8,7 +8,12 @@
 
 ---
 
-## Daftar Isi
+# Daftar Isi
+
+- [Praktikum 1: PHP Framework (Codeigniter)](#laporan-praktikum-1-php-framework-codeigniter)
+- [Praktikum 2: Framework Lanjutan (CRUD)](#laporan-praktikum-2-framework-lanjutan-crud)
+- [Praktikum 3: View Layout dan View Cell](#laporan-praktikum-3-view-layout-dan-view-cell)
+- [Praktikum 4: Framework Lanjutan (Modul Login)](#laporan-praktikum-4-framework-lanjutan-modul-login)
 - [Praktikum 5: Pagination dan Pencarian](#laporan-praktikum-5-pagination-dan-pencarian)
 - [Praktikum 6: Relasi Tabel dan Query Builder](#laporan-praktikum-6-relasi-tabel-dan-query-builder)
 - [Praktikum 7: Upload File Gambar](#laporan-praktikum-7-upload-file-gambar)
