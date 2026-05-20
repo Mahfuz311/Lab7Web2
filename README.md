@@ -424,5 +424,48 @@ Membuat file baru pada `app/Views/ajax/index.php`. Struktur halaman terdiri dari
 <img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.12.png">
 
 ---
+
+# Laporan Praktikum 9: Implementasi AJAX Pagination dan Search
+
+## Tujuan Praktikum
+1. Memahami konsep dasar penggunaan AJAX untuk fitur *pagination* dan pencarian (*search*).
+2. Mengimplementasikan *pagination* dan *search* secara dinamis menggunakan AJAX pada Framework CodeIgniter 4.
+3. Meningkatkan performa aplikasi dan *User Experience* (UX) dengan menghindari muat ulang (*reload*) halaman secara penuh.
+
+---
+
+## 🧩 Langkah-Langkah Praktikum
+
+### 1. Modifikasi Controller Artikel (admin_index)
+- Membuka file `app/Controllers/Artikel.php`.
+- Memodifikasi method `admin_index()` untuk dapat menerima dan merespons dua jenis *request*. Jika *request* biasa, maka halaman akan di-*load* normal. Namun jika terdeteksi sebagai *request* AJAX (menggunakan pengecekan `$this->request->isAJAX()`), maka data artikel hasil query pencarian dan *pager* (*pagination*) akan dikembalikan murni dalam format JSON.
+- Menerapkan fungsi `$builder->paginate()` untuk membatasi tampilan jumlah baris data.
+
+**[Source Code Artikel.php method admin_index]**
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/d805fcfe273c3a6ed0ee54742edab56fffce1f90/ss/praktikum9.2.png">
+
+### 2. Modifikasi View admin_index (Antarmuka dan jQuery AJAX)
+- Membuka file `app/Views/artikel/admin_index.php` dan memastikan pustaka jQuery telah dimuat.
+- Menghapus tabel data statis dan menggantinya dengan elemen kosong (`<div id="article-container"></div>` serta `<div id="pagination-container"></div>`) yang akan disuntikkan data secara dinamis oleh JavaScript.
+- Menambahkan kode jQuery untuk memantau aktivitas pada form pencarian (event `submit`), *dropdown* filter kategori (event `change`), dan klik tombol navigasi halaman.
+- Membuat fungsi `fetchData` yang melakukan *request* AJAX `GET` ke server untuk mengambil data terbaru setiap kali filter berubah, lalu memanggil fungsi *render* untuk menggambar ulang antarmuka tabel.
+- **Tugas Praktikum:** Menambahkan indikator *loading* interaktif yang muncul sesaat saat data sedang diproses atau ditarik dari server.
+
+**[Source Code View admin_index.php dengan jQuery AJAX]**
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/d805fcfe273c3a6ed0ee54742edab56fffce1f90/ss/praktikum9.3.png">
+
+### 3. Hasil Uji Coba (Testing)
+- Melakukan simulasi pencarian dengan mengetikkan kata kunci tertentu pada form.
+- Mengubah opsi *dropdown* kategori untuk melihat apakah tabel langsung terfilter tanpa me-*refresh* browser.
+- Melakukan perpindahan halaman (*pagination*) untuk melihat transisi data berjalan dengan mulus.
+- Menguji dan menangkap momen indikator *loading* saat server sedang memproses *request*.
+
+**[Indikator Loading Saat Mencari Data]**
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/d805fcfe273c3a6ed0ee54742edab56fffce1f90/ss/praktikum9.1.png">
+
+---
 **Repository by:** Mahfuz Fauzi
 **Mata Kuliah:** Pemrograman Web 2
