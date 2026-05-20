@@ -8,6 +8,15 @@
 
 ---
 
+## Daftar Isi
+- [Praktikum 5: Pagination dan Pencarian](#laporan-praktikum-5-pagination-dan-pencarian)
+- [Praktikum 6: Relasi Tabel dan Query Builder](#laporan-praktikum-6-relasi-tabel-dan-query-builder)
+- [Praktikum 7: Upload File Gambar](#laporan-praktikum-7-upload-file-gambar)
+- [Praktikum 8: Asynchronous JavaScript and XML (AJAX)](#laporan-praktikum-8-asynchronous-javascript-and-xml-ajax)
+- [Praktikum 9: Implementasi AJAX Pagination dan Search](#laporan-praktikum-9-implementasi-ajax-pagination-dan-search)
+
+---
+
 # Laporan Praktikum 1: PHP Framework (Codeigniter)
 
 Repository ini dibuat untuk memenuhi tugas Laporan Praktikum Pemrograman Web 2 di Universitas Pelita Bangsa
