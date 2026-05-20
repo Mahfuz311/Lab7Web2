@@ -1,4 +1,4 @@
-# Praktikum 1 - 7 PHP
+# Praktikum 1 - 8 PHP
 **Nama:** Mahfuz Fauzi  
 **Kelas:** I241C  
 **NIM:** 312410412  
@@ -353,3 +353,76 @@ Ini adalah lanjutan tugas Praktikum Pemrograman Web 2
 <img src="https://github.com/Mahfuz311/Lab7Web2/blob/8a077e9b0acba48f015da18fc9ba8d07b30b0eaf/ss/praktikum7.2.png">
 
 ---
+
+# Laporan Praktikum 8: Asynchronous JavaScript and XML (AJAX)
+
+## Tujuan Praktikum
+1. Memahami konsep dasar AJAX, keuntungan, dan cara kerjanya pada aplikasi web.
+2. Mengimplementasikan AJAX untuk mengambil, menambah, mengubah, dan menghapus data.
+3. Mampu membangun aplikasi web yang interaktif dan responsif tanpa reload halaman penuh menggunakan CodeIgniter 4 dan jQuery.
+
+---
+
+## Dasar Teori
+AJAX (Asynchronous JavaScript and XML) adalah sekumpulan teknik pengembangan web yang memungkinkan aplikasi bekerja secara *asynchronous* (tidak langsung). AJAX memungkinkan halaman web memperbarui dan menampilkan data dari server di belakang layar tanpa harus melakukan muat ulang (*reload*) keseluruhan halaman, sehingga meningkatkan kualitas *User Experience* (UX) dan menghemat penggunaan *bandwidth*.
+
+---
+
+## 🧩 Langkah-Langkah Praktikum
+
+### 1. Registrasi Routing Aplikasi
+Mendaftarkan seluruh URL yang dibutuhkan oleh AJAX ke dalam file konfigurasi `app/Config/Routes.php` agar sistem routing CodeIgniter 4 mengenali dan mengizinkan akses ke setiap method di Controller.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.7.png">
+
+### 2. Pembuatan AjaxController
+Membuat Controller baru bernama `AjaxController.php` yang mewarisi `BaseController`. Controller ini berfungsi untuk menangani permintaan *asynchronous* dari browser dan mengembalikan respon data dalam bentuk format JSON (JavaScript Object Notation):
+- `index()`: Memanggil halaman utama antarmuka AJAX.
+- `getData()`: Mengambil seluruh baris data artikel dari database menggunakan `ArtikelModel`.
+- `add()`: Menerima request POST untuk menyimpan artikel baru.
+- `edit($id)`: Mengambil satu baris data artikel spesifik berdasarkan ID untuk dimuat ke form ubah.
+- `update()`: Menerima request POST untuk memperbarui data artikel lama.
+- `delete($id)`: Menghapus data artikel berdasarkan ID tertentu.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.2.png">
+
+### 3. Pembuatan Antarmuka View dan Logika jQuery AJAX
+Membuat file baru pada `app/Views/ajax/index.php`. Struktur halaman terdiri dari form tambah data, form edit data (yang disembunyikan secara *default*), serta tabel data artikel. Logika AJAX diimplementasikan menggunakan pustaka jQuery melalui metode-metode berikut:
+- `$.ajax()` dengan method `GET` untuk mengeksekusi `getData` dan melakukan looping manipulasi DOM pada tabel HTML.
+- Event listener `submit` pada form tambah untuk mengirim data form via `POST` tanpa *refresh*.
+- Event listener `click` pada tombol `.btn-edit` untuk menarik data lama, menyembunyikan form tambah, dan memunculkan form edit beserta datanya.
+- Event listener `submit` pada form edit untuk memproses pembaharuan data ke server.
+- Event listener `click` pada tombol `.btn-delete` untuk memicu dialog konfirmasi dan mengirimkan instruksi penghapusan data.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.3.png">
+
+### 4. Hasil Uji Coba (Testing)
+- **Tampilan Awal & Load Data:** Menampilkan halaman kelola artikel di mana data sukses dimuat secara otomatis setelah status *loading* selesai.
+- **Tambah Data:** Sukses menambahkan artikel baru di mana data langsung masuk ke tabel bagian bawah tanpa ada jeda muat ulang halaman.
+- **Edit Data:** Mengklik tombol Edit sukses memunculkan form modifikasi data, mengisi teks lama secara otomatis, dan berhasil memperbarui tampilan tabel setelah tombol update ditekan.
+- **Hapus Data:** Mengklik tombol hapus memicu konfirmasi *alert* browser dan sukses menghilangkan baris data terpilih secara instan.
+
+**[Tampilan Awal & Load Data Halaman Utama AJAX]**
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.1.png">
+
+**[Proses Tambah Data AJAX]**
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.4.png">
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.5.png">
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.6.png">
+
+**[Proses Edit Data AJAX]**
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.8.png">
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.9.png">
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.10.png">
+
+**[Notifikasi Data Berhasil Dihapus]**
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.11.png">
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/7b34d2c2c09efdb6b517e9b0aeafca9d771bdcbc/ss/praktikum8.12.png">
+
+---
+**Repository by:** Mahfuz Fauzi
+**Mata Kuliah:** Pemrograman Web 2
