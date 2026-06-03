@@ -1,4 +1,4 @@
-# Praktikum 1 - 9 PHP
+# Praktikum 1 - 10 PHP
 **Nama:** Mahfuz Fauzi  
 **Kelas:** I241C  
 **NIM:** 312410412  
@@ -19,7 +19,9 @@
 - [Praktikum 7: Upload File Gambar](#laporan-praktikum-7-upload-file-gambar)
 - [Praktikum 8: Asynchronous JavaScript and XML (AJAX)](#laporan-praktikum-8-asynchronous-javascript-and-xml-ajax)
 - [Praktikum 9: Implementasi AJAX Pagination dan Search](#laporan-praktikum-9-implementasi-ajax-pagination-dan-search)
+- [Praktikum 10: Implementasi AJAX Pagination dan Search](#laporan-praktikum-10-pembuatan-rest-api)
 
+Pembuatan REST API
 ---
 
 # Laporan Praktikum 1: PHP Framework (Codeigniter)
@@ -481,5 +483,58 @@ Membuat file baru pada `app/Views/ajax/index.php`. Struktur halaman terdiri dari
 <img src="https://github.com/Mahfuz311/Lab7Web2/blob/d805fcfe273c3a6ed0ee54742edab56fffce1f90/ss/praktikum9.1.png">
 
 ---
+
+# Laporan Praktikum 10: Pembuatan REST API
+
+## Tujuan Praktikum
+1. Memahami konsep dasar REST API dan arsitektur RESTful.
+2. Mampu merancang dan membangun REST API menggunakan Framework CodeIgniter 4.
+3. Mampu melakukan pengujian *endpoint* API menggunakan aplikasi REST Client (Postman).
+
+---
+
+## 🧩 Langkah-Langkah Praktikum
+
+### 1. Mendaftarkan Routing REST API
+Langkah pertama adalah membuka file `app/Config/Routes.php` dan mendaftarkan rute *resource* untuk API. Dengan menambahkan kode `$routes->resource('post');`, CodeIgniter secara otomatis men- *generate* seluruh *endpoint* standar RESTful (GET, POST, PUT, PATCH, DELETE) dalam satu baris kode.
+
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/922babf48bb5d464c3911bed9de1d18ceecb1f7b/ss/praktikum10.1.png">
+
+### 2. Membuat REST Controller (Post.php)
+Membuat *controller* baru bernama `Post.php` di dalam folder `app/Controllers`. Berbeda dengan *controller* biasa, *controller* ini mewarisi class `ResourceController` dan menggunakan `ResponseTrait` agar dapat merespons permintaan dengan format JSON. Di dalamnya, dibuat 5 *method* utama:
+- `index()`: Mengambil dan menampilkan seluruh data artikel (GET).
+- `show($id)`: Menampilkan satu data artikel spesifik berdasarkan ID (GET).
+- `create()`: Menerima data dan menyimpannya ke database (POST).
+- `update($id)`: Menerima perubahan data dan memperbaruinya di database (PUT).
+- `delete($id)`: Menghapus data spesifik dari database (DELETE).
+
+
+### 3. Pengujian Menggunakan Postman
+Karena API tidak memiliki antarmuka (View), pengujian dilakukan menggunakan aplikasi Postman dengan memukul (*hit*) URL *endpoint* yang telah dibuat.
+
+**a. Menampilkan Semua Data (GET All)**
+- Method: `GET` | URL: `http://localhost:8080/post`
+- Mengembalikan response kode `200 OK` berisi kumpulan *array* seluruh data artikel dalam format JSON.
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/922babf48bb5d464c3911bed9de1d18ceecb1f7b/ss/praktikum10.2.png">
+
+**b. Menampilkan Data Spesifik (GET Single)**
+- Method: `GET` | URL: `http://localhost:8080/post/13`
+- Mengembalikan response kode `200 OK` berisi satu objek data artikel sesuai ID yang diminta.
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/922babf48bb5d464c3911bed9de1d18ceecb1f7b/ss/praktikum10.3.png">
+
+**c. Menambahkan Data Baru (POST)**
+- Method: `POST` | URL: `http://localhost:8080/post`
+- Mengirimkan *body request* (`x-www-form-urlencoded`) berisi `judul` dan `isi`.
+- Mengembalikan response kode `201 Created` beserta pesan sukses penambahan data.
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/922babf48bb5d464c3911bed9de1d18ceecb1f7b/ss/praktikum10.4.png">
+
+**d. Menghapus Data (DELETE)**
+- Method: `DELETE` | URL: `http://localhost:8080/post/13`
+- Menghapus data spesifik berdasarkan ID yang dikirim pada URL.
+- Mengembalikan response kode `200 OK` beserta pesan sukses penghapusan data.
+<img src="https://github.com/Mahfuz311/Lab7Web2/blob/922babf48bb5d464c3911bed9de1d18ceecb1f7b/ss/praktikum10.5.png">
+
+---
 **Repository by:** Mahfuz Fauzi
+
 **Mata Kuliah:** Pemrograman Web 2
