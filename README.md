@@ -19,9 +19,8 @@
 - [Praktikum 7: Upload File Gambar](#laporan-praktikum-7-upload-file-gambar)
 - [Praktikum 8: Asynchronous JavaScript and XML (AJAX)](#laporan-praktikum-8-asynchronous-javascript-and-xml-ajax)
 - [Praktikum 9: Implementasi AJAX Pagination dan Search](#laporan-praktikum-9-implementasi-ajax-pagination-dan-search)
-- [Praktikum 10: Implementasi AJAX Pagination dan Search](#laporan-praktikum-10-pembuatan-rest-api)
+- [Praktikum 10: Pembuatan Rest API](#laporan-praktikum-10-pembuatan-rest-api)
 
-Pembuatan REST API
 ---
 
 # Laporan Praktikum 1: PHP Framework (Codeigniter)
