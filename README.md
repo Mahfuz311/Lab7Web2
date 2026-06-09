@@ -1,4 +1,4 @@
-# Praktikum 1 - 10 PHP
+# Praktikum 1 - 11 PHP
 **Nama:** Mahfuz Fauzi  
 **Kelas:** I241C  
 **NIM:** 312410412  
@@ -20,6 +20,8 @@
 - [Praktikum 8: Asynchronous JavaScript and XML (AJAX)](#laporan-praktikum-8-asynchronous-javascript-and-xml-ajax)
 - [Praktikum 9: Implementasi AJAX Pagination dan Search](#laporan-praktikum-9-implementasi-ajax-pagination-dan-search)
 - [Praktikum 10: Pembuatan Rest API](#laporan-praktikum-10-pembuatan-rest-api)
+- [Praktikum 11:  Frontend VueJS dan REST API CodeIgniter 4](https://github.com/Mahfuz311/Lab11Web_VueJs)
+
 
 ---
 
