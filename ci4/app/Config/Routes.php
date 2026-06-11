@@ -35,3 +35,5 @@ $routes->get('ajaxcontroller/edit/(:num)', 'AjaxController::edit/$1');
 $routes->post('ajaxcontroller/update', 'AjaxController::update');
 
 $routes->resource('post');
+$routes->post('api/login', 'Api\Auth::login');
+$routes->options('api/login', 'Api\Auth::login');
