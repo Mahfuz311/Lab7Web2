@@ -34,6 +34,18 @@ $routes->post('ajaxcontroller/add', 'AjaxController::add');
 $routes->get('ajaxcontroller/edit/(:num)', 'AjaxController::edit/$1');
 $routes->post('ajaxcontroller/update', 'AjaxController::update');
 
-$routes->resource('post');
+// --- Route API Login (Bebas Akses) ---
 $routes->post('api/login', 'Api\Auth::login');
 $routes->options('api/login', 'Api\Auth::login');
+
+// --- Route API POST (Praktikum 14) ---
+// 1. Route GET data (Bebas akses untuk ditampilkan di VueJS)
+$routes->get('post', 'Post::index');
+$routes->get('post/(:segment)', 'Post::show/$1');
+$routes->options('post', 'Post::index'); 
+$routes->options('post/(:segment)', 'Post::show/$1');
+
+// 2. Route Manipulasi Data (DILINDUNGI OLEH FILTER 'apiauth')
+$routes->post('post', 'Post::create', ['filter' => 'apiauth']);
+$routes->put('post/(:segment)', 'Post::update/$1', ['filter' => 'apiauth']);
+$routes->delete('post/(:segment)', 'Post::delete/$1', ['filter' => 'apiauth']);
