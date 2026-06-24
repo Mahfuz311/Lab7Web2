@@ -1,4 +1,4 @@
-# Praktikum 1 - 11 PHP
+# Praktikum 1 - 14 PHP
 **Nama:** Mahfuz Fauzi  
 **Kelas:** I241C  
 **NIM:** 312410412  
@@ -21,6 +21,10 @@
 - [Praktikum 9: Implementasi AJAX Pagination dan Search](#laporan-praktikum-9-implementasi-ajax-pagination-dan-search)
 - [Praktikum 10: Pembuatan Rest API](#laporan-praktikum-10-pembuatan-rest-api)
 - [Praktikum 11:  Frontend VueJS dan REST API CodeIgniter 4](https://github.com/Mahfuz311/Lab11Web_VueJs)
+- [Praktikum 12:  VueJS Komponen dan Routing (Single Page Application)](https://github.com/Mahfuz311/Lab11Web_VueJs)
+- [Praktikum 13:  VueJS Autentikasi dan Navigation Guards (SPA Security)](https://github.com/Mahfuz311/Lab11Web_VueJs)
+- [Praktikum 14:  Keamanan API, Autentikasi Token, dan Axios Interceptors](https://github.com/Mahfuz311/Lab11Web_VueJs)
+
 
 
 ---
